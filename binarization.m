@@ -1,29 +1,29 @@
-image = imread('equation_5.jpg');
-image_8 = imread('8.jpg');
-
-
+image = imread('equation_2.jpg');
 gray_image = rgb2gray(image);
 gray_thresh = graythresh(gray_image);
 disp(gray_thresh);
-
+binarized_image = imbinarize(gray_image);
 % filtered = imgaussfilt(image, 0.1);
 lap_filter = fspecial('laplacian',0.2); 
 mean_filter = fspecial('average',[6 6]);
-binarized_image = imbinarize(gray_image, 0.4);
+
+
+
 filtered = imfilter(binarized_image, mean_filter);
+figure
+% imshow(filtered);
 filtered = imcomplement(filtered);
 
-lineSE = strel('line',1,45);
 
-rectSE = strel('rectangle',[15 15]);
-diskSE = strel('disk',11);
+rectSE = strel('rectangle',[10 10]);
+diskSE = strel('disk',1);
 
 % cleaned = imerode(filtered, diskSE);
 
 cleaned = imdilate(filtered, rectSE);
 cleaned = imopen(cleaned, diskSE);
 
-
+% imwrite(filtered,'.png');
 
 figure
 subplot (3,2,1); imshow(image); title('Original');
