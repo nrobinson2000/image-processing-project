@@ -9,10 +9,7 @@ function [prediction] = predict_function()
 %     image = imread(imdsPred.Files{1});
 %     figure
 
-    for i = 1:numFiles
-%         subplot(5,5,i);
-%         imshow(imdsPred.Files{i});
-%         title(string(YPred(i)));  
+    for i = 1:numFiles 
         char = string(YPred(i));
         if char == "times"
             char = "*";

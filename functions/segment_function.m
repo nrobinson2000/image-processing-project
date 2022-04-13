@@ -2,12 +2,13 @@ function [numChar] = segment_function(image)
     moddedImage = image;
     [L,Ne] = bwlabel(moddedImage);
     % Measuring properties of image regions
-    propied = regionprops(L,'BoundingBox');
-    hold on
+%     propied = regionprops(L,'BoundingBox');
+%     hold on
 %     % Plot Bounding Box
-    for n=1:size(propied,1)
-        rectangle('Position',propied(n).BoundingBox,'EdgeColor','g','LineWidth',2)
-    end
+%     for n=1:size(propied,1)
+%         rectangle('Position',propied(n).BoundingBox,'EdgeColor','g','LineWidth',2)
+%     end
+    delete('segmentedImages/*');
     for n=1:Ne
         subplot(5,5,n);
         [r,c] = find(L==n);
@@ -28,5 +29,4 @@ function [numChar] = segment_function(image)
     end
     
     numChar = Ne;
-    imwrite(propied, 'segmentation.png')
 end

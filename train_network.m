@@ -56,49 +56,48 @@ numTrainingFiles = 750;
 %     classificationLayer
 %     ];
 
-% layers = [
-%     imageInputLayer([28 28])
-%     convolution2dLayer(3,20)
-%     reluLayer
-%     convolution2dLayer(3,20)
-%     reluLayer
-%     maxPooling2dLayer(2,'Stride',2)
-%     dropoutLayer(0.5)
-%     reluLayer
-%     fullyConnectedLayer(16)
-%     softmaxLayer
-%     classificationLayer
-%     ];
-
 layers = [
-    imageInputLayer([28 28],'Name','Input Layer')
-    convolution2dLayer(3,64,'Padding',[1 1])
+    imageInputLayer([28 28])
+    convolution2dLayer(3,20)
     reluLayer
-    convolution2dLayer(3,64,'Padding',[1 1])
-    reluLayer
-    maxPooling2dLayer(2,'Stride',2)
-    convolution2dLayer(3,128,'Padding',[1 1])
-    reluLayer
-    convolution2dLayer(3,128,'Padding',[1 1])
+    convolution2dLayer(3,20)
     reluLayer
     maxPooling2dLayer(2,'Stride',2)
-    convolution2dLayer(3,256,'Padding',[1 1])
-    reluLayer
-    convolution2dLayer(3,256,'Padding',[1 1])
-    reluLayer
-    convolution2dLayer(3,256,'Padding',[1 1])
-    reluLayer
-    maxPooling2dLayer(2,'Stride',2)
-    fullyConnectedLayer(16)
-    reluLayer
-    dropoutLayer(0.5)
-    fullyConnectedLayer(16)
-    reluLayer
-    dropoutLayer(0.5)
+    dropoutLayer(0.7)
     fullyConnectedLayer(16)
     softmaxLayer
     classificationLayer
     ];
+
+% layers = [
+%     imageInputLayer([28 28],'Name','Input Layer')
+%     convolution2dLayer(3,16,'Padding',[1 1])
+%     reluLayer
+%     convolution2dLayer(3,16,'Padding',[1 1])
+%     reluLayer
+%     maxPooling2dLayer(2,'Stride',2)
+%     convolution2dLayer(3,32,'Padding',[1 1])
+%     reluLayer
+%     convolution2dLayer(3,32,'Padding',[1 1])
+%     reluLayer
+%     maxPooling2dLayer(2,'Stride',2)
+%     convolution2dLayer(3,64,'Padding',[1 1])
+%     reluLayer
+%     convolution2dLayer(3,64,'Padding',[1 1])
+%     reluLayer
+%     convolution2dLayer(3,64,'Padding',[1 1])
+%     reluLayer
+%     maxPooling2dLayer(2,'Stride',2)
+%     fullyConnectedLayer(16)
+%     reluLayer
+%     dropoutLayer(0.5)
+%     fullyConnectedLayer(16)
+% %     reluLayer
+% %     dropoutLayer(0.5)
+% %     fullyConnectedLayer(16)
+%     softmaxLayer
+%     classificationLayer
+%     ];
 
 options = trainingOptions('sgdm', ...
     'MaxEpochs',40,...
