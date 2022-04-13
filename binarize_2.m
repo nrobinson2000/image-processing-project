@@ -1,4 +1,4 @@
-originalImage = imread('equation_2.jpg');
+originalImage = imread('equation_5.jpg');
 
 % Conversion to grayScale image
 grayImage = rgb2gray(originalImage);
@@ -6,10 +6,10 @@ grayImage = rgb2gray(originalImage);
 threshold = graythresh(grayImage);
 binaryImage = ~imbinarize(grayImage,threshold);
 % Removes all object containing fewer than 30 pixels
-diskSE = strel('disk',10);
+diskSE = strel('disk',9);
 lineSE = strel('line',15, 90);
-moddedImage = bwareaopen(binaryImage,40);
-moddedImage = imdilate(moddedImage, lineSE);
+moddedImage = bwareaopen(binaryImage,30);
+moddedImage = imdilate(moddedImage, diskSE);
 
 imwrite(moddedImage,'test_image.png');
 

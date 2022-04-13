@@ -1,4 +1,4 @@
-image = imread('cleaned.png');
+image = imread('test_image.png');
 imshow(image);
 moddedImage = image;
 [L,Ne] = bwlabel(moddedImage);
@@ -24,7 +24,10 @@ for n=1:Ne
         n1 = padarray(n1, [0 padding],0,'both');
     end
     subplot(5,5,10+n);
-    n1 = imresize(n1,[28 28]);
+%     n1 = imresize(n1,[28 28]);
+%     n1 = imresize(n1,[128 128]);
+    n1 = imgaussfilt(double(n1),1);
+    n1 = padarray(imresize(n1, [20 20]), [4 4],0, 'both');
     imshow(n1);
     fullFileName = fullfile('segmentedImages', sprintf('image%d.png', n));
     imwrite(n1, fullFileName);

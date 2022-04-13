@@ -5,13 +5,11 @@ YPred = classify(net,imdsPred);
 [numFiles, n] = size(imdsPred.Files);
 figure
 image = imread(imdsPred.Files{1});
-disp(size(image));
-imshow(image);
 figure
 
 
 for i = 1:numFiles
-    subplot(3,3,i);
+    subplot(5,5,i);
     imshow(imdsPred.Files{i});
-    title("Predicted Label: " + string(YPred(i)));
+    title(string(YPred(i)));
 end
