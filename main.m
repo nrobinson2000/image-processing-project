@@ -1,6 +1,6 @@
-function predict(I)
+function main(I)
     image = imread(I);
-
+    
     %binarization
     gray_image = rgb2gray(image);
     gray_thresh = graythresh(gray_image);
@@ -15,7 +15,7 @@ function predict(I)
     diskSE = strel('disk',11);
     cleaned = imdilate(filtered, rectSE);
     cleaned = imopen(cleaned, diskSE);
-
+    
     %segmentation
     moddedImage = cleaned;
     [L,Ne] = bwlabel(moddedImage);
@@ -29,35 +29,35 @@ function predict(I)
     % figure
     for n=1:Ne
     %     subplot(5,5,n);
-        [r,c] = find(L==n);
-        n1 = moddedImage(min(r):max(r),min(c):max(c));
+    [r,c] = find(L==n);
+    n1 = moddedImage(min(r):max(r),min(c):max(c));
     %     imshow(n1);
-        [h,w] = size(n1);
-        if h<w
-            padding = ceil((w-h)/2);
-            n1 = padarray(n1, [padding 0],0,'both');
-        elseif h>w
-            padding = ceil((h-w)/2);
-            n1 = padarray(n1, [0 padding],0,'both');
-        end
-    %     subplot(5,5,10+n);
-        n1 = imresize(n1,[28 28]);
-    %     imshow(n1);
-        fullFileName = fullfile('segmentedImages', sprintf('image%d.png', n));
-        imwrite(n1, fullFileName);
-        pause(1)
+    [h,w] = size(n1);
+    if h<w
+    padding = ceil((w-h)/2);
+    n1 = padarray(n1, [padding 0],0,'both');
+    elseif h>w
+    padding = ceil((h-w)/2);
+    n1 = padarray(n1, [0 padding],0,'both');
     end
-
+    %     subplot(5,5,10+n);
+    n1 = imresize(n1,[28 28]);
+    %     imshow(n1);
+    fullFileName = fullfile('segmentedImages', sprintf('image%d.png', n));
+    imwrite(n1, fullFileName);
+    pause(1)
+    end
+    
     %load model and predict
     load('net.mat');
-    predictDataSetPath = fullfile('segmentedImages');
+    predictDataSetPath = fullfile('test');
     imdsPred = imageDatastore(predictDataSetPath,'IncludeSubfolders',true);
     YPred = classify(net,imdsPred);
     [numFiles, n] = size(imdsPred.Files);
     figure
     for i = 1:numFiles
-        subplot(3,3,i);
-        imshow(imdsPred.Files{i});
-        title("Predicted Label: " + string(YPred(i)));
+    subplot(3,3,i);
+    imshow(imdsPred.Files{i});
+    title("Predicted Label: " + string(YPred(i)));
     end
-end
+
