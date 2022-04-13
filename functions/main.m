@@ -1,4 +1,4 @@
-image = imread('equations/equation_11.jpg');
+image = imread('equations/equation_5.jpg');
 
 preprocessed_image = preprocess_function(image);
 segment_function(preprocessed_image);

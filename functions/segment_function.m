@@ -3,11 +3,12 @@ function [numChar] = segment_function(image)
     [L,Ne] = bwlabel(moddedImage);
     % Measuring properties of image regions
 %     propied = regionprops(L,'BoundingBox');
-    hold on
+%     hold on
 %     % Plot Bounding Box
 %     for n=1:size(propied,1)
 %         rectangle('Position',propied(n).BoundingBox,'EdgeColor','g','LineWidth',2)
 %     end
+    delete('segmentedImages/*');
     for n=1:Ne
         subplot(5,5,n);
         [r,c] = find(L==n);
