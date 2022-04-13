@@ -56,7 +56,7 @@ function predict(I)
     [numFiles, n] = size(imdsPred.Files);
     figure
     for i = 1:numFiles
-        subplot(5,5,i);
+        subplot(3,3,i);
         imshow(imdsPred.Files{i});
         title("Predicted Label: " + string(YPred(i)));
     end
