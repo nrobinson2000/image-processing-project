@@ -8,4 +8,5 @@ function image = preprocess_function(image)
     diskSE = strel('disk',9);
     moddedImage = bwareaopen(binaryImage,30);
     image = imdilate(moddedImage, diskSE);
+    imwrite(image,'binarized.png')
 end
