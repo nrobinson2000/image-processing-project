@@ -1,5 +1,5 @@
 ## Requirements
-
+**Check or install requirements in Home -> Add-ons**
 - MATLAB Symbolic Math Toolbox
 - MATLAB Deep Learning Toolbox
 - MATLAB Image Processing Toolbox
